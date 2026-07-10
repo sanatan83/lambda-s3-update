@@ -13,7 +13,7 @@ pipeline {
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-creds'
                 ]]) {
-                    dir('s3_bucket') {
+                    dir('terraform') {
                         bat 'terraform init'
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-creds'
                 ]]) {
-                    dir('s3_bucket') {
+                    dir('terraform') {
                         bat 'terraform plan'
                     }
                 }
@@ -39,7 +39,7 @@ pipeline {
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-creds'
                 ]]) {
-                    dir('s3_bucket') {
+                    dir('terraform') {
                         bat 'terraform apply -auto-approve'
                     }
                 }
