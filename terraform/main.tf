@@ -55,3 +55,14 @@ resource "aws_lambda_function" "s3_notification" {
     aws_iam_role_policy_attachment.lambda_logs
   ]
 }
+
+
+
+resource "aws_lambda_permission" "allow_s3" {
+
+  statement_id  = "AllowExecutionFromS3"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.s3_notification.function_name
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.my_bucket.arn
+}
